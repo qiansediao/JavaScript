@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box1{
+				height: 200px;
+				position: relative;
+			}
+			.box2{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function(){
+				var btn = document.getElementsByTagName("button")[0];
+				var box2 = document.getElementsByClassName("box2")[0];
+				var timer = null;
+				btn.onclick=function(){
+					animate(box2,200);
+				}
+				
+				function animate(ele,target){
+					clearInterval(timer);
+					var speed = target - ele.offsetLeft>0?10:-10;
+					timer = setInterval(function(){
+						var val = target - ele.offsetLeft;
+						ele.style.left = ele.offsetLeft + 10 + "px";
+						if(val<10){
+							ele.style.left = target + "px";
+							clearInterval(timer)
+						}
+					},30)
+					
+				}
+				
+			}
+		</script>
+		<div class="box1">
+			<button>移动到200</button>
+			<div class="box2"></div>
+		</div>
+	</body>
+</html>

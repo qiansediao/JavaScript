@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.box{
+				width: 200px;
+				height: 200px;
+				background: red;
+				position: absolute;
+				top: 150px;
+				left: 10px;
+				z-index: 1;
+			}
+			img{
+				position: absolute;
+				width: 200px;
+				top: 130px;
+				left: 10px;
+			}
+			
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var btn = document.getElementsByTagName("button")[0];
+				var box = document.getElementsByTagName("div")[0];
+				var img = document.getElementsByTagName("img")[0];
+				
+				
+				btn.onclick = function(){
+	//				box.style.position = "absolute"
+					box.style.top = "400px";
+					box.style.left = "200px";
+					
+					img.style.top = "400px";
+					img.style.left = "200px";
+					img.style.zIndex = 1;
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<button>动!!!</button>
+		<div class="box"></div>
+		<img src="image/mm.png"/>
+	</body>
+</html>

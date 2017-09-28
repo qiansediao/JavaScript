@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				width: 300px;
+				height: 300px;
+				background: pink;
+				position: absolute;
+				left: 100px;
+				top: 100px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var box = document.getElementsByTagName("div")[0];
+				var boxLeft = box.offsetLeft;
+				var boxHeigth = box.offsetTop;
+				box.onmousemove = function(event){
+					event = event || window.event;
+					var y = event.clientY;
+					var x = event.clientX;
+					console.log(y-boxHeigth);
+					console.log(x-boxLeft);
+					
+					
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			
+		</div>
+	</body>
+</html>

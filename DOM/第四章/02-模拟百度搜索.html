@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 500px; 
+				/*height: 10px;*/
+				margin: 200px auto;
+				
+			}
+			input[type="text"]{
+				width: 400px;
+				/*height: 15px;*/
+				/*border: 0;
+				border: 1px solid black;*/
+			}
+			input[type="button"]{
+				width: 80px;
+				/*height: 15px;*/
+				margin-left: 10px;
+				/*border: 0;
+				border: 1px solid black;*/
+			}
+			ul{
+				width: 392px;
+				padding: 5px;
+				list-style: none;
+				border: 1px solid red;
+				
+			}
+			li:hover{
+				background-color: red;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<div class="box">
+			<input type="text" /><input type="button" value="搜索" />
+		</div>
+		<script type="text/javascript">
+			var box = document.getElementsByTagName("div")[0];
+			var inp = document.getElementsByTagName("input")[0];
+			var arr = ["a", "ab", "abc", "abcd", "aa"];
+			
+			inp.onkeyup = function(){
+				var newArr = [];
+				  for(var i=0;i<arr.length;i++){
+				  	var val = this.value;
+				  	if(arr[i].indexOf(val)===0){
+				  		newArr.push("<li>"+arr[i]+"</li>");
+				  	}
+				  }
+				 var str = newArr.join("");
+			
+			
+			
+			//bug1，每次创建新的ul之前。先删除旧的ul
+			//只有ul存在我们才能删除ul
+			if(box.children[2]){
+				box.removeChild(box.children[2]);
+			}
+			
+			//bug2：如果input中内容为空，那么就不能再生成ul了
+			//如果input为空，那么切断函数
+			if(this.value.length ===0 ||newArr.length ===0){
+				return;
+			}
+			
+			
+			
+			
+			var ul = document.createElement("ul");
+			ul.innerHTML = str;
+			box.appendChild(ul);
+			}
+		  
+		</script>
+	</body>
+</html>

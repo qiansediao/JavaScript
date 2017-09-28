@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.box{
+				width: 400px;
+				height: 300px;
+				
+				border: 10px solid gray;
+				position: absolute;
+				top: 40%;
+				left: 40%;
+			}
+			.banner{
+				height: 30px;
+				background: cornflowerblue;
+				cursor: move;
+			}
+			span{
+				display: block;
+				color: white;
+				line-height: 30px;
+			}
+			.left{
+				float: left;
+			}
+			.right{
+				float: right;
+			}
+		</style>
+		<script src="demo.js">
+			
+		</script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var banner = document.getElementById("banner");
+				var box = document.getElementsByClassName("box")[0]
+				console.log(banner);
+				console.log(box);
+				banner.onmousedown = function(event){
+					event = event || window.event;
+					
+					var pagex = event.pageX || event.clientX + scroll().left;
+					var pagey = event.pagey || event.clientY + scroll().top;
+					var x = pagex - box.offsetLeft;
+					var y = pagey - box.offsetTop;
+					console.log(x);
+					console.log(y);
+					document.onmousemove = function(event){
+						event = event || window.event;
+						var xx = event.pageX || event.clientX + scroll().left;
+						var yy = event.pagey || event.clientY + scroll().top;
+						
+						xx = xx -x;
+						yy = yy - y;
+						box.style.left = xx + "px";
+						box.style.top = yy + "px";
+						
+						window.getSelection?window.getSelection().removeAllRanges():document.selection.empty();
+					}
+				}
+				
+				banner.onmouseup = function(){
+					document.onmousemove = null;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			<div class="banner" id="banner">
+				<span class="left">注册信息(可以拖拽)</span>
+				<span class="right">【关闭】</span>
+			</div>
+		</div>
+	</body>
+</html>

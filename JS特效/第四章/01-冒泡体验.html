@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box1{
+				width: 400px;
+				height: 400px;
+				background: red;
+			}
+			.box2{
+				width: 200px;
+				height: 200px;
+				background: green;
+			}
+			.box3{
+				width: 100px;
+				height: 100px;
+				background: yellow;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var box1 = document.getElementsByClassName("box1")[0];
+				var box2 = document.getElementsByClassName("box2")[0];
+				var box3 = document.getElementsByClassName("box3")[0];
+				
+//				box1.onclick = function(){
+//					alert("box1");
+//				}
+//				box2.onclick = function(){
+//					alert("box2");
+//				}
+//				box3.onclick = function(){
+//					alert("box3");
+//				}
+//				document.onclick = function(){
+//					alert("document");
+//				}
+//				
+				box1.addEventListener("click",function(){
+					alert("我是box1");
+				},true);
+				
+				box2.addEventListener("click",function(){
+					alert("我是box2")
+				},true);
+				box3.addEventListener("click",function(){
+					alert("我是box3")
+				},true);
+				
+				document.addEventListener("click",function(){
+					alert("我是document")
+				},true);
+			}
+		</script>
+	</head>
+	<body>
+		<div class="box1">
+			<div class="box2">
+				<div class="box3"></div>
+			</div>
+		</div>
+	</body>
+</html>

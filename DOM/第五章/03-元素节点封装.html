@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+		
+		<script src="tool.js">
+			
+		</script>
+		<script type="text/javascript">
+			//注意：类元素和标签元素节点必须加索引
+			var box = fn(".box")[0];
+			console.log(box);
+//			box.style.width = "200px";
+//			box.style.height ="200px";
+			box.style.backgroundColor = "red";
+		</script>
+	</body>
+</html>

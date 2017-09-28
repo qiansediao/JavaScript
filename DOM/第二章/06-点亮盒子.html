@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			button{
+				width: 100px;
+				text-align: center;
+				height: 40px;
+				line-height: 40px;
+				margin-right:30px ;
+				margin-top: 30px;
+				background: green;
+			}
+			.current{
+				background: yellow;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var btn = document.getElementsByTagName("button");
+				for(var i=0; i<btn.length; i++){
+					btn[i].index = i;
+					btn[i].onmouseover = function(){
+						
+						for(var j=0;j<btn.length;j++){
+							btn[j].className = "";
+						}
+						this.className = "current";
+						alert(this.index);
+					}
+				}
+			}
+		
+			
+		</script>
+	</head>
+	<body>
+		<button>按钮1</button>
+		<button>按钮2</button>
+		<button>按钮3</button>
+		<button>按钮4</button>
+		<button>按钮5</button>
+	</body>
+</html>

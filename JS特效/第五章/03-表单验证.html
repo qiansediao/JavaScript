@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background: lightgray;
+			}
+			.box{
+				width: 420px;
+				height: 240px;
+				padding: 80px 40px;
+				background: aliceblue;
+				border: 1px solid gray;
+				margin: 100px auto;
+			}
+			span{
+				font-size: 12px;
+				color: lightgray;
+				padding: 2px 20px 0;
+			}
+			input{
+				margin-bottom:20px ;
+				margin-right: 40px;
+				margin-left: 8px;
+				
+			}
+			.right{
+				color: green;
+				background: url(images/right.png) no-repeat;
+			}
+			.wrong{
+				color: red;
+				background: url(images/error.png) no-repeat;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function(){
+				addEvent("inp1",function(){
+					if(/^[1-9][0-9]{4,}/.test(this.value)){
+						setClassName(this,"right");
+						setInnerHtml(this,"恭喜你,输入正确")
+					}else{
+						setClassName(this,"wrong");
+						setInnerHtml(this,"格式错误");
+					}
+					
+				});
+				
+				addEvent("inp2",function(){
+					if(/^((13[0-9])|(15[^4,\D])|(18[0-9]))\d{8}$/.test(this.value)){
+						setClassName(this,"right");
+						setInnerHtml(this,"恭喜你,输入正确")
+					}else{
+						setClassName(this,"wrong");
+						setInnerHtml(this,"格式错误");
+					}
+				});
+				
+				
+				function addEvent(str,fn){
+					document.getElementById(str).onblur = fn;
+				}
+				
+				function setClassName(aaa,txt){
+					var span = aaa.nextElementSibling || this.nextSibling;
+					span.className = txt;
+				}
+				function setInnerHtml(aaa,txt){
+					var span = aaa.nextElementSibling || this.nextSibling;
+					span.innerHTML = txt;
+				}
+			}
+		</script>
+		<div class="box">
+			<label for="inp1">QQ  </label><input type="text" id="inp1"/> <span>请输入正确的QQ号码</span><br />
+			<label for="inp2">手机</label><input type="text" id="inp2"/><span>输入13位手机号码</span><br />
+			<label for="inp3">邮箱</label><input type="text" id="inp3"/><span>请输入正确的邮箱</span><br />
+			<label for="inp4">座机</label><input type="text" id="inp4"/><span>请输入您的座机</span><br />
+			<label for="inp5">账号</label><input type="text" id="inp5"/><span>请输入您的账号</span><br />
+			<label for="inp6">密码</label><input type="password" id="inp6" /><span>请输入您的密码</span><br />
+		</div>
+		
+	</body>
+</html>

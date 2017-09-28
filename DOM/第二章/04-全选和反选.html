@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			table{
+				/*border: 0;*/
+				margin: 100px auto;
+				border-collapse: collapse;
+			}
+			th,tr,td{
+				border: 1px solid gray;
+				
+			}
+			tr .cols1{
+				width: 40px;
+				height: 30px;
+			}
+			tr .cols2{
+				width: 140px;
+				height: 30px;
+			}
+			thead tr{
+				background: dodgerblue;
+				color: white;
+			}
+			tbody tr{
+				background: lightgray;
+				font-size: 12px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var thed = document.getElementById("thed");
+				var inp = thed.getElementsByTagName("input")[0];
+				var tbod = document.getElementById("tbod");
+				var inpArr = tbod.getElementsByTagName("input");
+				
+				
+				inp.onclick = function(){
+					for(var i=0;i<inpArr.length;i++){
+						inpArr[i].checked = this.checked;
+					}
+				}
+				
+				
+				for(var i=0;i<inpArr.length;i++){
+					inpArr[i].onclick = function(){
+						var bool = true;
+							for(var j=0;j<inpArr.length;j++){
+								if(inpArr[j].checked === false){
+									bool = false;
+//									inp.checked =false;这样不行
+								}
+								
+							}	
+						inp.checked = bool;
+						
+						
+					}
+				}
+			}
+
+		</script>
+	</head>
+	<body>
+		<table>
+			<thead id="thed">
+				<tr>
+					<th class="cols1"><input type="checkbox"/></th>
+					<th class="cols2">菜名</th>
+					<th>饭店</th>
+				</tr>
+			</thead>
+				
+			<tbody id="tbod">
+				<tr>
+					<td class="cols1"><input type="checkbox"/></td>
+					<td class="cols2">地三鲜</td>
+					<td>田老师</td>
+				</tr>
+				<tr>
+					<td class="cols1"><input type="checkbox"/></td>
+					<td class="cols2">西红柿鸡蛋</td>
+					<td>田老师</td>
+				</tr>
+				<tr>
+					<td class="cols1"><input type="checkbox"/></td>
+					<td class="cols2">醋溜土豆丝</td>
+					<td>田老师</td>
+				</tr>
+				<tr>
+					<td class="cols1"><input type="checkbox"/></td>
+					<td class="cols2">萝卜干炒黄豆而</td>
+					<td>田老师</td>
+				</tr>
+			</tbody>
+				
+			
+		</table>
+	</body>
+</html>

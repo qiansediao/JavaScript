@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				font-size: 18px;
+			}
+			select{
+				font-size: 16px;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function(){
+				var btn = document.getElementsByTagName("button");
+				var sel = document.getElementsByTagName("select");
+				var optArr1 = sel[0].children;
+				var optArr2 = sel[1].children;
+				
+				
+				btn[0].onclick = function(){
+					for(var i=optArr1.length-1;i>=0;i--){
+						//因为optArr1的长度会变，i的值随着opt.length变化才能正确显示
+						sel[1].appendChild(optArr1[0]);
+					}
+				}
+				
+				btn[1].onclick = function(){
+					for(var i=optArr2.length-1;i>=0;i--){
+						sel[0].appendChild(optArr2[0]);
+					}
+				}
+				
+				
+				btn[2].onclick = function(){
+					for(var i=optArr1.length-1;i>=0;i--){
+						if(optArr1[i].selected === true){
+							sel[1].appendChild(optArr1[i]);
+						}
+					}
+					
+					//获取sel[1]中的子元素变成真数组，然后排序
+					
+					var aaa = Array.from(sel[1].children).sort(function(a,b){
+						return a.value - b.value;
+					})
+					
+					//删除原有子元素
+					for(var i=0;i<sel[1].children.length;i++){
+						sel[1].removeChild(sel[1].children[i]);
+					}
+					
+					//把排序好的数据添加到sel[1]中
+					for(var i=0;i<aaa.length;i++){
+						sel[1].appendChild(aaa[i]);
+					}
+				}
+				btn[3].onclick = function(){
+					for(var i=optArr2.length-1;i>=0;i--){
+						if(optArr2[i].selected === true){
+							sel[0].appendChild(optArr2 [i]);
+						}
+					}
+				}
+//				BeforeUnloadEvent
+//				btn[0].onclick = function(){
+//					for(var i=0;i<optArr1.length;i++){
+//						optArr2[i].innerHTML = optArr1[i].innerHTML;
+//						optArr1[i].innerHTML = "";
+//					}
+//				}
+//				btn[1].onclick = function(){
+//					for(var i=0;i<optArr2.length;i++){
+//						optArr1[i].innerHTML = optArr2[i].innerHTML;
+//						optArr1[i].innerHTML = "";
+//					}
+//				}
+//				var k = 0
+//				btn[2].onclick = function(){
+//					
+//					for(var i=0;i<optArr1.length;i++){
+//					
+//						if(optArr1[i].selected){
+//							
+//							optArr2[k].innerHTML = optArr1[i].innerHTML;
+//							optArr1[i].innerHTML = "";
+//							k++;
+//						}
+//					}
+//				}
+//				btn[3].onclick = function(){
+//					
+//					for(var i=0;i<optArr2.length;i++){
+//					
+//						if(optArr2[i].selected){
+//							
+//							optArr1[k].innerHTML = optArr2[i].innerHTML;
+//							optArr2[i].innerHTML = "";
+//							k++;
+//						}
+//					}
+//				}
+			}
+		</script>
+		<select multiple="multiple" style="width: 200px;height: 250px; background-color: greenyellow;">
+			<option value="1">1香蕉</option>
+			<option value="2">2苹果</option>
+			<option value="3">3鸭梨</option>
+			<option value="4">4葡萄</option>
+		</select>
+		<button>>>></button>
+		<button><<<</button>
+		<button>></button>
+		<button><</button>
+		<select multiple="multiple" style="width: 200px;height: 250px; background-color: greenyellow;">
+			<!--<option value=""></option>
+			<option value=""></option>
+			<option value=""></option>
+			<option value=""></option>-->
+		</select>
+	</body>
+</html>

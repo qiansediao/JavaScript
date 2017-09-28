@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.box{
+				width: 500px;
+				height: 200px;
+				padding: 7px;
+				border: 1px solid #ccc;
+				margin: 100px auto;
+				position: relative;
+			}
+			ul{
+				list-style: none;
+			}
+			.inner{
+				width: 500px;
+				height: 200px;
+				position: relative;
+				overflow: hidden;
+			}
+			ul#pic{
+				width: 3000px;
+				height: 200px;
+				position: absolute;
+			}
+			ul#xuhao{
+				position: absolute;
+				bottom: 15px;
+				right: 0;
+			}
+			ul#xuhao li{
+				width: 20px;
+				height: 20px;
+				border: 1px solid #CCCCCC;
+				line-height: 20px;
+				text-align: center;
+				background: white;
+				margin-right:15px ;
+				
+			}
+			ul li{
+				float: left;
+			}
+			#xuhao li.current{
+				background: yellow;
+			}
+			.row{
+				width: 490px;
+				padding: 0 5px;
+				height: 40px;
+				position: absolute;
+				top: 80px;
+				/*background: red;*/
+				
+			}
+			.row span{
+				width: 40px;
+				height: 40px;
+				font-size: 40px;
+				line-height: 40px;
+				text-align: center;
+				background:black;
+				color: white;
+				opacity: 0.3;
+				border: 1px solid #CCCCCC;
+			}
+			span#left{
+				float: left;
+				
+			}
+			span#right{
+				float: right;
+			}
+			.row{
+				display: none;
+			}
+			span#
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function(){
+				var inner = document.getElementsByClassName("inner")[0];
+				var row = document.getElementsByClassName("row")[0];
+				var pic = document.getElementById("pic");
+				var xuhao =  document.getElementById("xuhao");
+				var liArr = xuhao.children;
+				var firstLi = pic.children[0];
+			
+			
+			
+			//克隆图片
+				var newli = firstLi.cloneNode(true);
+				pic.appendChild(newli);
+				
+				
+				
+				var spanLeft = document.getElementById("left");
+				var spanRight = document.getElementById("right");
+				var imgWidth = document.getElementsByTagName("img")[0].offsetWidth;
+//				alert(imgWidth);
+				//需求1：点击序列号，点亮盒子，并且滚动图片
+//				alert(pic.offsetLeft);
+				alert(pic.children.length);
+				for(var i=0;i<liArr.length;i++){
+					liArr[i].index = i;
+					liArr[i].onmouseover = function(){
+						for(var j=0;j<liArr.length;j++){
+							liArr[j].className = "";
+						}
+						key = square = this.index;
+						this.className = "current";
+						animate(pic,-this.index*imgWidth);
+					}
+				}
+				
+				//设置定时器
+				var timer = null;
+				var key = 0;
+				var square = 0;
+				timer = setInterval(autoPlay,1000);
+				function autoPlay(){
+					key++;
+					if(key>5){
+						key = 1;
+						pic.style.left = 0 + "px";
+					}
+					square++;
+					square = square>liArr.length-1?0:square;
+					for(var j=0;j<liArr.length;j++){
+						liArr[j].className = "";
+					}
+					liArr[square].className = "current"
+					animate(pic,-key*imgWidth)
+				}
+				
+				
+				inner.onmouseover = function(){
+					row.style.display = "block"
+					clearInterval(timer);
+				}
+				inner.onmouseout = function(){
+					row.style.display = "none";
+					timer = setInterval(autoPlay,1000);
+				}
+				//
+				
+				spanRight.onclick = function(){
+					autoPlay();
+				}
+				
+				spanLeft.onclick = function(){
+					key--;
+					square--;
+					if(key<0){
+						key = 4;
+						ul.style.left = -5*imgWidth + "px";
+					}
+					animate(pic,-key*imgWidth);
+					square = square <0 ? 4:square;
+					for(var j=0;j<liArr.length;j++){
+						liArr[j].className = "";
+					}
+					liArr[square].className = "current";
+				}
+				
+				
+				
+				
+				function animate(ele,target){
+					clearInterval(ele.timer);
+					ele.timer = setInterval(function(){
+						var step = (target - ele.offsetLeft)/10
+						step = step>0?Math.ceil(step):Math.floor(step);
+						
+						ele.style.left = ele.offsetLeft + step + "px";
+						if(Math.abs(ele.offsetLeft-target)<Math.abs(step)){
+							ele.style.left = target + "px";
+							clearInterval(ele.timer);
+						}
+					},10)
+				}
+				
+				
+			}
+		</script>
+		<div class="box">
+			<div class="inner">
+				<ul id="pic">
+					<li><img src="images/1.jpg"/></li>
+					<li><img src="images/2.jpg"/></li>
+					<li><img src="images/3.jpg"/></li>
+					<li><img src="images/4.jpg"/></li>
+					<li><img src="images/5.jpg"/></li>
+				</ul>
+				<ul id="xuhao">
+					<li class="current">1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+					<li>5</li>
+				</ul>
+				<div class="row">
+					<span id="left"><</span>
+					<span id="right">></span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

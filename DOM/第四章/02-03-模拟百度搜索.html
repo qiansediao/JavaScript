@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.box{
+				width: 500px;
+				margin: 100px auto;
+			}
+			input{
+				width: 400px;
+				
+			}
+			button{
+				width: 80px;
+			}
+			ul{
+				width: 400px;
+				padding-top: 20px;
+				list-style: none;
+				border: 1px solid red;
+			}
+			ul li:hover{
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="box">
+			<input type="text" />
+			<button>搜索</button>
+		</div>
+		<script type="text/javascript">
+			var box =document.getElementsByTagName("div")[0];
+			var inp = box.children[0];
+			var arr = ["aa","ab","abc","aaa","abd"];
+			
+			inp.onkeyup = function(){
+				var newArr = [];
+				
+				for(var i=0;i<arr.length;i++){
+					var val = this.value;
+					if(arr[i].indexOf(val)===0){
+						newArr.push("<li>"+arr[i]+"</li>");
+					}
+				}
+				var str = newArr.join("");
+				
+				
+				
+				//bug1:旧ul需要删除,不然一直产生新的ul
+				if(box.children[2]){
+					box.removeChild(box.children[2]);
+				}
+				
+				
+				if(this.value===0||newArr.length===0){
+					return;
+				}
+				var ul = document.createElement("ul");
+				ul.innerHTML = str;
+				box.appendChild(ul);
+			}
+			
+		</script>
+	</body>
+</html>

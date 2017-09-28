@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{
+				list-style: none;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 1150px;
+				height: 400px;
+				margin: 50px auto;
+				border: 1px solid red;
+				overflow: hidden;
+			}
+			.box li{
+				width: 240px;
+				height: 400px;
+				float: left;
+			}
+			.box ul{
+				width: 1300px;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function(){
+				var liArr = document.getElementsByTagName("li");
+				console.log(liArr.length);
+				for(var i=0;i<liArr.length;i++){
+					liArr[i].style.background = "url(images/"+(i+1)+".jpg) no-repeat";
+					liArr[i].onmouseover = function(){
+						for(var j=0;j<liArr.length;j++){
+							animate(liArr[j],{"width":100})
+						}
+						animate(this,{"width":800});
+					}
+					liArr[i].onmouseout = function(){
+						for(var j=0;j<liArr.length;j++){
+							animate(liArr[j],{"width":240});
+						}
+					}
+				}
+				
+				function animate(ele,json){
+					clearInterval(ele.timer);
+					ele.timer = setInterval(function(){
+						var bool = true;
+						for(var k in json){
+							var target = json[k];
+							var leader = parseInt(getStyle(ele,k)) ||0;
+							var step = (target - leader)/10;
+							step = step>0?Math.ceil(step):Math.floor(step);
+							leader = leader + step
+							ele.style[k] = leader + "px";
+							if(target !==leader){
+								bool = false;
+							}
+						}
+						if(bool){
+							clearInterval(ele.timer);
+//							if(fn){
+//								fn();
+//							}
+						}
+					},25)
+				}
+				
+				
+				 function getStyle(ele,attr){
+		            if(window.getComputedStyle){
+		                return window.getComputedStyle(ele,null)[attr];
+		            }
+		            return ele.currentStyle[attr];
+        		}
+
+			}
+		</script>
+		<div class="box">
+			<ul>
+				<!--<li><img src="images/1.jpg"/></li>
+				<li><img src="images/2.jpg"/></li>
+				<li><img src="images/3.jpg"/></li>
+				<li><img src="images/4.jpg"/></li>
+				<li><img src="images/5.jpg"/></li>-->
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</body>
+</html>

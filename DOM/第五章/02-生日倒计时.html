@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				width: 800px;
+				text-align: center;
+				font-size: 32px;
+				font-family: "宋体";
+				color: red;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function(){
+				var box = document.getElementsByTagName("div")[0];
+				var timer = setInterval(fn,1)
+				function fn(){
+					var future = new Date("2017/07/30 12:23:45");
+					var time1 = future.getTime()
+					var time2 = new Date().getTime();
+					var  time = time1 - time2;
+					//天数
+					var day = parseInt(time/1000/60/60/24);
+					var hour = parseInt(time/1000/60/60%24);
+					var minutes = parseInt(time/1000/60%60);
+					var seconds = parseInt(time/1000%60);
+					var minSec = parseInt(time%1000);
+					
+					day = day>10?day:"0" + day;
+					hour = hour>10?hour:"0"+hour
+					minutes = minutes>10?minutes:"0"+minutes
+					seconds = seconds>10?seconds:"0"+seconds
+//					minSec = minSec>100?minSec:minSec+"00";
+					if(minSec<10){
+						minSec =  "00" + minSec;
+					}
+					if(minSec<100){
+						minSec = "0" + minSec;
+					}
+					
+					box.innerHTML = "距离生日聚会还有"+day+"天"+hour +"小时"+minutes+"分"+seconds+"秒"+minSec + "毫秒";
+				
+					if(time<0){
+						box.innerHTML = "时间已过啦！"
+					}
+				
+				}
+				
+			}
+			
+			
+		</script>
+		<div class="box">
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 500px;
+				height: 400px;
+				border: 1px solid darkgray;
+				margin: 100px auto;
+				overflow: hidden;
+			}
+			ul{
+				list-style: none;
+				width: 500px;
+				height: 50px;
+			}
+			ul li{
+				width: 100px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				float: left;
+				background: pink;
+			}
+			/*ul li:hover{
+				background: yellow;
+			}*/
+		   span{
+		   	/*display：none必须写，需要定义成块元素，不然后面tab切换的时候有问题*/
+		   	/*什么问题？*/
+		   	/*切换到第二个的时候,第二个span标签变成了block,但是第一个span还是会占用位置,所以第二个
+		   	 span会被挤到第二行*/
+		   		/*display: none;*/
+				width: 500px;
+				height: 350px;
+				background: yellow;
+				text-align: center;
+				font: 800 106px/350px simhei;
+			}
+			.current{
+				background: yellow;
+			}
+			.show{
+				display: block;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul>
+				<li class="current">鞋子</li>
+				<li>袜子</li>
+				<li>帽子</li>
+				<li>裤子</li>
+				<li>裙子</li>
+			</ul>
+			
+			<span class="show">鞋子</span>
+			<span>袜子</span>
+			<span>帽子</span>
+			<span>裤子</span>
+			<span>裙子</span>
+		
+		</div>
+		<script type="text/javascript">
+			var liArr = document.getElementsByTagName("li");
+			var spanArr = document.getElementsByTagName("span");
+			
+			for(var i=0; i<liArr.length; i++){
+				liArr[i].index = i;
+				liArr[i].onmouseover = function(){
+					for(var j=0; j<liArr.length; j++){
+						liArr[j].className = "";
+						spanArr[j].className = "";
+					}
+					this.className = "current";
+					spanArr[this.index].className = "show";
+				}
+			}
+			
+		</script>
+	</body>
+</html>

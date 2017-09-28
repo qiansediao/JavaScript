@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				position: absolute;
+				top: 40px;
+				left: 10px;
+				height: 100px;
+				width: 100px;
+				background: pink;
+			}
+		</style>
+		<script src="demo.js">
+			
+		</script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var btn = document.getElementsByTagName("button")[0];
+				var div = document.getElementsByTagName("div")[0];
+				console.log(btn);
+				btn.onclick = function(){
+//					alert(1);
+					var json = {"left":10,"top":200,"width":300,"height":200};
+					animate(div,json);
+				}
+				
+				
+				
+				function animate(ele,json){
+					clearInterval(ele.timer);
+					
+					ele.timer = setInterval(function(){
+						for(var k in json){
+							var leader = parseInt(getStyle(ele,k)) ||0;
+//							var target = json[k];
+							var step = (json[k] - leader)/10;
+							step = step>0?Math.ceil(step):Math.floor(step);
+							leader = leader + step;
+							ele.style[k] = leader +"px";
+//							if(Math.abs(json[k]-leader)<=Math.abs(step)){
+//								ele.style[k] = json[k] + "px";
+//								clearInterval(ele.timer);
+//							}
+							
+						}
+					},10)
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button>运动到400</button>
+		<div></div>
+	</body>
+</html>

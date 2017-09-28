@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+/jquery-1.4.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var jLi = $("li:odd");
+				var oLi = $("li:even");
+				
+				jLi.css("background","red");
+				oLi.css("background","yellow")
+				var color = "";
+				$("li").mouseenter(function(){
+					color = $(this).css("background");
+					$(this).css("background","blue");
+				});
+				
+				$("li").mouseleave(function(){
+					$(this).css("background",color);
+				})
+			})
+		</script>
+	</head>
+	<body>
+		
+		<ul>
+			<li>魂消香断玉环冷，锦裘绣帕不闻香.......</li>
+			<li>魂消香断玉环冷，锦裘绣帕不闻香.......</li>
+			<li>魂消香断玉环冷，锦裘绣帕不闻香.......</li>
+			<li>魂消香断玉环冷，锦裘绣帕不闻香.......</li>
+			<li>魂消香断玉环冷，锦裘绣帕不闻香.......</li>
+			<li>魂消香断玉环冷，锦裘绣帕不闻香.......</li>
+		</ul>
+	</body>
+</html>

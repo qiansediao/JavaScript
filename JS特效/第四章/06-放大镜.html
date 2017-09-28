@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				width: 350px;
+				height: 350px;
+				border: 1px solid gray;
+				position: absolute;
+				left: 100px;
+				top: 100px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="demo.js" ></script>
+		<script type="text/javascript">
+			window.onload = function(event){
+				event = event ||window.event;
+				var pagex = event.pageX || scroll().left + event.clientX;
+				var pagey = event.pageY || scroll().top + event.clientY;
+			}
+		</script>
+		<div class="box">
+			<img src="images/001.jpg"/>
+		</div>
+	</body>
+</html>

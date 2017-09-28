@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.box{
+				width: 490px;
+				height: 170px;
+				padding: 5px;
+				/*position: relative;*/
+				margin: 100px auto;
+				border: 1px solid black;
+				/*overflow: hidden;*/
+			}
+			.inner{
+				width: 490px;
+				height: 170px;
+				position: relative;
+				overflow: hidden;
+			}
+			ul{
+				list-style: none;
+			}
+			.pic{
+				width: 2450px;
+				height: 170px;
+				/*list-style: none;*/
+				position: absolute;
+				/*left: 5px;
+				top: 5px;*/
+			}
+			.xuhao{
+				position: absolute;
+				right: 5px;
+				bottom: 20px;
+				
+			}
+			.xuhao li{
+				width: 15px;
+				height: 15px;
+				margin-right: 15px;
+				line-height: 15px;
+				text-align: center;
+				background: white;
+				font-size: 12px;
+			}
+			li.current{
+				background: orange;
+				color: white;
+			}
+			ul li{
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function(){
+				var pic = document.getElementsByClassName("pic")[0];
+				var xuhao = document.getElementsByClassName("xuhao")[0];
+//				console.log(xuhao);
+				var liArr = xuhao.children;
+				var imgWidth = document.getElementsByTagName("img")[0].offsetWidth;
+//				alert(imgWidth);
+				for(var i=0;i<liArr.length;i++){
+					liArr[i].index = i;
+					liArr[i].onclick = function(){
+						clearInterval(timer1);
+						for(var j=0;j<liArr.length;j++){
+							liArr[j].className = "";
+						}
+						this.className = "current";
+						
+						animate(pic,-this.index*imgWidth);
+					}
+				}
+				
+				var k = 0;
+				var timer1 = setInterval(function(){
+//					var k = -xuhao.offsetLeft/imgWidth;
+					k++
+					if(k>4){
+						k = 0
+//						animate(pic,0);
+						pic.style.left = 0 +'px';
+					}
+					for(var i=0;i<liArr.length;i++){
+						liArr[i].className = "";
+					}
+					liArr[k].className = "current";
+					animate(pic,-k*imgWidth);
+				},1000)
+				
+				
+				
+				
+				
+				function animate(ele,target){
+					clearInterval(ele.timer);
+					var speed = target - ele.offsetLeft >0?10:-10;
+					ele.timer = setInterval(function(){
+						var val = target - ele.offsetLeft;
+						ele.style.left = ele.offsetLeft + speed + "px";
+						if(Math.abs(val)<Math.abs(speed)){
+							ele.style.left = target + "px";
+							clearInterval(ele.timer);
+						}
+					},10)
+				}
+			}
+		</script>
+		<div class="box">
+			<div class="inner">
+				<ul class="pic">
+					<li><img src="images/01.jpg"/></li>
+					<li><img src="images/02.jpg"/></li>
+					<li><img src="images/03.jpg"/></li>
+					<li><img src="images/04.jpg"/></li>
+					<li><img src="images/05.jpg"/></li>
+				</ul>
+				<ul class="xuhao">
+					<li class="current">1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+					<li>5</li>
+				</ul>
+			</div>
+			
+		</div>
+	</body>
+</html>

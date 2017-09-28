@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				height: 5000px;
+			}
+			img{
+				position: absolute;
+				padding: 10px 0;
+				border: 1px solid #CCCCCC;
+				cursor: pointer;
+			}
+		</style>
+		<script src="demo.js">
+		</script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var img = document.getElementsByTagName("img")[0];
+				var targetx = 0; var targety = 0;
+				var leaderx = 0; var leadery = 0;
+				var timer = null;
+				document.onclick = function(event){
+					event = event || window.event;
+					var pagey = event.pageY ||scroll().top + event.clientY;
+					var pagex =event.pageX || scroll().left + event.clientX;
+					targety = pagey  - 30;
+					targetx = pagex - 50;
+					
+					clearInterval(timer);
+					timer = setInterval(function(){
+						leaderx = img.offsetLeft;
+						var stepx = (targetx - leaderx)/10;
+						stepx = stepx>0?Math.ceil(stepx):Math.floor(stepx);
+						img.style.left = leaderx + stepx + "px";
+						
+						
+						leadery = img.offsetTop;
+						var stepy = (targety - leadery)/10;
+						stepy = stepy>0?Math.ceil(stepy):Math.floor(stepy);
+						img.style.top = leadery + stepy + "px";
+						
+						
+						if(Math.abs(targetx-img.offsetLeft)<Math.abs(stepx)&&Math.abs(targety-img.offsetTop)<Math.abs(stepy)){
+							img.style.left = targetx + "px";
+							img.style.top = targety + "px";
+							clearInterval(timer);
+						}
+					})
+					
+				}
+				
+				
+//				function animate(ele,target){
+//					clearInterval(ele.timer);
+//					ele.timer = setInterval(function(){
+//						var step = (target - ele.offsetLeft)/10;
+//						step = step>0?Math.ceil(step):Math.floor(step);
+//						ele.style.left = ele.offsetLeft + step + "px";
+//						
+//						if(Math.abs(target-ele.offsetLeft)<Math.abs(step)){
+//							ele.style.left = target + "px";
+//							clearInterval(ele.timer);
+//						}
+//					},10)
+//				}
+//				
+				
+			}
+		</script>
+	</head>
+	<body>
+	
+			<img src="images/img.jpg" width="100px" />
+		
+		
+	</body>
+</html>

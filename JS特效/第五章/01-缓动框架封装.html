@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				width: 100px;
+				height: 100px;
+				background: pink;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var btn = document.getElementsByTagName("button")[0];
+				var box = document.getElementsByTagName("div")[0];
+				
+				
+				btn.onclick = function(){
+					var json1 = {"left":100,"top":100,"width":200,"height":200,"border-radius":50};
+					var json2 = {"left":50,"top":100,"width":100,"border-radius":100,"opacity":40};
+					animate(box,json1,function(){
+						animate(box,json2)
+					});
+				}
+				
+				
+				function animate(ele,json,fn){
+					clearInterval(ele.timer);
+					ele.timer = setInterval(function(){
+						var bool = true;
+						for(var k in json){
+							var target = json[k];
+//							var leader = getStyle(ele,k);
+//							alert(leader);
+							var leader = parseInt(getStyle(ele,k)) ||0;
+							var step = (target - leader)/10;
+							step = step>0?Math.ceil(step):Math.floor(step);
+							leader = leader + step
+							
+							if(k==="opacity"){
+								ele.style[k] = leader/10;
+								ele.style.filter = "alpha(opacity="+leader+")"
+							}else{
+								ele.style[k] =  leader + "px";
+							}
+							
+//							if(Math.abs(target-leader)
+							if(target !==leader){
+								bool = false;
+							}
+						}
+						
+						
+						if(bool){
+							clearInterval(ele.timer);
+							if(fn){
+								fn();
+							}
+						}
+					},25)
+				}
+				
+				
+				function getStyle(ele,attr){
+					if(window.getComputedStyle){
+						return window.getComputedStyle(ele,null)[attr];
+						
+					}
+					return ele.currentStyle[attr];
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button>运动到400然后回来</button>
+		<div class="box"></div>
+	</body>
+</html>

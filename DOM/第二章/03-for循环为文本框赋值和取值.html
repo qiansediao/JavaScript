@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function(){
+				 var inpArr = document.getElementsByTagName("input");
+				 var btn = document.getElementsByTagName("button");
+				 
+				 btn[0].onclick = function(){
+				 	for(var i=0;i<inpArr.length;i++){
+				 		inpArr[i].value = i;
+				 	}
+				 }
+				 
+				 btn[1].onclick = function(){
+				 	var newArr = [];
+				 	for(var i=0;i<inpArr.length;i++){
+				 		newArr.push(inpArr[i].value);
+				 	}
+				 	console.log(newArr.join(" "));
+				 }
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" /><br />
+		<input type="text" /><br />
+		<input type="text" /><br />
+		<input type="text" /><br />
+		<input type="text" /><br />
+		<button>赋值</button><br />
+		<button>取值</button><br />
+	</body>
+</html>

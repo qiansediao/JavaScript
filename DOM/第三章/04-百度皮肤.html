@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				background: url(image/1.jpg) no-repeat;
+			}
+			ul{
+				list-style: none;
+				width: 100%;
+				/*width: 850px;*/
+				text-align: center;
+				/*margin: 20px auto;*/
+				height: 165px;
+				background: rgba(255,255,255,0.3);
+			}
+			ul li{
+				/*width: 150px;*/
+				float: left;
+				margin: 10px ;
+			}
+			ul li a{
+				display: block;
+				/*width: 150px;*/
+				
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li><a href="#"><img src="image/1.jpg"/ width="150px"></a></li>
+			<li><a href="#"><img src="image/2.jpg"/ width="150px"></a></li>
+			<li><a href="#"><img src="image/3.jpg"/ width="150px"></a></li>
+			<li><a href="#"><img src="image/4.jpg"/ width="150px"></a></li>
+			<li><a href="#"><img src="image/5.jpg"/ width="150px"></a></li>
+		</ul>
+		
+		<script type="text/javascript">
+			var bod = document.body;
+			var liArr = document.getElementsByTagName("li");
+			for(var i=0;i<liArr.length;i++){
+				liArr[i].index = i;
+				liArr[i].onclick = function(){
+					bod.style.backgroundImage = "url(image/"+(this.index+1)+".jpg)";
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background: url(image/bg.gif) repeat;
+				font-size: 12px;
+			}
+			.box{
+				width: 960px;
+				height: 560px;
+				margin: 0 auto;
+				position: relative;
+				background: url(image/content_bg.jpg);
+			}
+			.tip1{
+				position: absolute;
+				width: 227px;
+			}
+			.tip1 .tiph{
+				background: url(image/tip1_h.gif) no-repeat left top;
+			}
+			.tip1 .tiph{
+				width: 227px;
+				height: 23px;
+				padding-top: 45px;
+				text-align: left;
+				cursor: move;
+			}
+			.close{
+				float: left;
+				font-size: 12px;
+				cursor: pointer;
+				color: #000000;
+			}
+			.clr{
+				clear: both;
+				overflow: auto;
+				display: block;
+				height: 0px;
+			}
+			.icon{
+				float: left;
+				width: 35px;
+				padding-left:15px;
+				height: 35px;
+				text-align: center;
+			}
+			.num{
+				float: left;
+				padding-left: 7px;
+				width: 195px;
+			}
+			.name{
+				float: left;
+				padding-right: 15px;
+			}
+			.box .tip1 .tip_c{
+				background: url(image/tip1_c.gif) repeat-y;
+			}
+			.box .tip1 .tip_c{
+				width: 200px;
+				padding-left: 12px;
+				padding-right: 15px;
+				min-height: 40px;
+				text-align: left;
+				max-height: 160px;
+				word-wrap: break-word;
+				word-break: break-all;
+				overflow: hidden;
+				
+			}
+			
+			.box .tip1 .tip_f{
+				background: url(image/tip1_f.gif) no-repeat left top;
+			}
+			.box .tip1 .tip_f{
+				width: 227px;
+				height: 53px;
+				padding-top: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="tip1">
+				<div class="tiph">
+					<div class="num">第[49568]条 2016-07-7 22:51:52</div>
+					<div class="close" title="关闭纸条">x</div>
+					<div class="clr"></div>
+				</div>
+				<div class="tip_c">
+					普天同庆，天下大同！
+				</div>
+				<div class="tip_f">
+					<div class="icon">
+						<img src="image/bpic_1.gif"/>
+					</div>
+					<div class="name">不愿意透露姓名的吕先生</div>
+					<div class="clr"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

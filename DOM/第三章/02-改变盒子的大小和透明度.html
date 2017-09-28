@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--<style type="text/css">
+			/*div{
+				width: 200px;
+				height: 200px;
+				background: yellow;
+			}*/
+		</style>-->
+	</head>
+	
+	<body>
+	<script type="text/javascript">
+		window.onload = function(){
+			var box = document.getElementsByTagName("div")[0];
+			box.onmouseover = function(){
+				box.style.width = "200px"
+				box.style.height = "200px";
+				box.style.background = "black";
+				box.style.opacity = "0.2";
+//				div.style.filter ="alpha(opacity=20)";
+			}
+		}
+	</script>
+		<div style="width: 100px; height: 100px;background: pink;"></div>
+	</body>
+</html>

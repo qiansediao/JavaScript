@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			img{
+				vertical-align: top;
+			}
+			.center{
+				margin: 0 auto;
+				width: 1000px;
+				margin-top: 10px;
+			}
+			.fixed{
+				position: fixed;
+				top: 0;
+				left: 0;
+			}
+			
+		</style>
+		<script src="demo.js">
+		</script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var topDiv = document.getElementById("top");
+				var height = topDiv.offsetHeight;
+				var nav = document.getElementById("nav");
+				var center = document.getElementsByClassName("center")[0];
+				
+				window.onscroll = function(){
+					if(scroll().top > height){
+						nav.className += " fixed";
+						center.style.paddingTop =nav.offsetHeight + "px";
+						
+					}
+					if(scroll().top<height){
+						nav.className = "";
+						center.style.paddingTop =0;
+					}
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div class="top" id="top">
+			<img src="images/top.png"/>
+		</div>
+		<div id="nav">
+			<img src="images/nav.png"/>
+		</div>
+		<div class="center">
+			<img src="images/main.png"/>
+		</div>
+	</body>
+</html>

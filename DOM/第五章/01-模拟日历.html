@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				width: 500px;
+				height: 100px;
+				color: red;
+				font-size: 32px;
+				margin: 100px auto;
+				/*border: 1px solid black;*/
+				text-align: center;
+				line-height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function(){
+				var box = document.getElementsByTagName("div")[0];
+				var date1 = new Date();
+				var year = date1.getFullYear();
+				var month = date1.getMonth() + 1;
+				var day = date1.getDate();
+				var arr = ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"];
+				var week = date1.getDay();
+				var weekday = arr[week];
+				
+				box.innerHTML = "今天是： " + year + "年" + month + "月" + day + "日"+" "+weekday;
+				
+				
+			}
+		</script>
+		<div class="box"></div>
+	</body>
+</html>

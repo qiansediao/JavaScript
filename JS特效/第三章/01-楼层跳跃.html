@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body,html{
+				height: 100%;
+			}
+			ul{
+				list-style: none;
+			}
+			#area{
+				/*width: 100%;*/
+				height: 100%;
+				/*position: absolute;*/
+			}
+			#area li{
+				height: 100%;
+			}
+			#nav{
+				position: fixed;
+				left: 50px;	
+				top: 100px;			
+			}
+			#nav li{
+				width: 50px;
+				height: 50px;
+				text-align: center;
+				line-height: 40px;
+				border: 1px solid black;
+				margin-top: -1px;
+			}
+		</style>
+		<script src="demo.js">
+			
+		</script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var area = document.getElementById("area");
+//				var height = area.offsetHeight;
+//				alert(height)
+				var areaLi = area.children;
+				var nav = document.getElementById("nav");
+				var navLi = nav.children;
+				var leader = 0;
+				var timer = null;
+				var target = 0
+				for(i=0;i<navLi.length;i++){
+					areaLi[i].style.backgroundColor = navLi[i].style.backgroundColor;
+					navLi[i].index = i;
+					
+//					leader = scroll().top;
+					navLi[i].onclick = function(){
+							target = areaLi[this.index].offsetTop;
+							clearInterval(timer);
+					
+							timer = setInterval(function(){
+							var step = (target - leader)/10;
+							step = step>0?Math.ceil(step):Math.floor(step);
+							
+							leader = leader + step;
+							
+							window.scrollTo(0,leader);
+							if(Math.abs(target-leader)<Math.abs(step)){
+	//							area.style.top = target + "px";
+								window.scrollTo(0,target);
+								clearInterval(timer)
+							}
+						},10)
+				}
+			}
+		}
+		</script>
+	</head>
+	<body>
+		<ul id="area">
+			<li>鞋子区域</li>
+			<li>袜子区域</li>
+			<li>裤子区域</li>
+			<li>裙子区域</li>
+			<li>帽子区域</li>
+		</ul>
+		<ul id="nav">
+			<li style="background: pink;">鞋子</li>
+			<li style="background: blue;">袜子</li>
+			<li style="background: yellow;">裤子</li>
+			<li style="background: orange;">裙子</li>
+			<li style="background: green;">帽子</li>
+		</ul>
+	</body>
+</html>

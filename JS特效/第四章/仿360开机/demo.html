@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				position: fixed;
+				width: 322px;
+				right: 0;
+				bottom: 0;
+			}
+			span{
+				position: absolute;
+				width: 30px;
+				height: 20px;
+				cursor: pointer;
+				top: 0;
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function(){
+				var box = document.getElementsByClassName("box")[0];
+				var hd = document.getElementsByClassName("hd")[0];
+				var bd = document.getElementsByClassName("bd")[0];
+				var guanbi = document.getElementById("guanbi");
+				console.log(box);
+				guanbi.onclick = function(){
+					animate(bd,{"height":0},function(){
+						animate(box,{"width":0});
+					})
+				}
+				
+				
+				function animate(ele,json,fn){
+					clearInterval(ele.timer);
+					ele.timer = setInterval(function(){
+						var bool = true;
+						for(var k in json){
+							var target = json[k];
+							var leader = parseInt(getStyle(ele,k)) || 0;
+							var step = (target - leader)/10;
+							step = step>0?Math.ceil(step):Math.floor(step);
+							leader = leader + step;
+							ele.style[k] = leader + "px";
+							
+							if(target !== leader){
+								bool = false
+							}
+						}
+						
+						if(bool===true){
+							clearInterval(ele.timer);
+							if(fn){
+								fn();
+							}
+						}
+						
+					},2)
+				}
+				
+				function getStyle(ele,attr){
+					if(window.getComputedStyle){
+						return window.getComputedStyle(ele,null)[attr];
+					}
+					return ele.currentStyle[attr];
+				}
+			}
+		</script>
+		<div class="box">
+			<div class="hd">
+				<img src="images/t.jpg"/>	
+			</div>
+			<div class="bd">
+				<img src="images/b.jpg"/>
+			</div>
+			
+			<span id="guanbi"></span>
+		</div>
+	</body>
+</html>

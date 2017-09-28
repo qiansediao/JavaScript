@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../jquery-1.11.1.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("input").on("keyup",function(e){
+					if(e.keyCode === 13){
+						console.log($(this).next());
+						$(this).next().focus();
+					}
+				});
+				
+				$("input").on("mouseenter",function(e){
+					$(this).select();
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<input type="text" value="我是中国人" />
+		<input type="text" value="我是中国人" />
+		<input type="text" value="我是中国人" />
+		<input type="text" value="我是中国人" />
+		<input type="text" value="我是中国人" />
+		<input type="text" value="我是中国人" />
+		<input type="text" value="我是中国人" />
+	</body>
+</html>

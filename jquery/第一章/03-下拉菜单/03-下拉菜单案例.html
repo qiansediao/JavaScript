@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				list-style: none;
+			}
+			li{
+				width: 100px;
+				height: 30px;
+				margin-right:10px ;
+				line-height: 30px;
+				background: url(libg.jpg) no-repeat;
+				float:left;
+				text-align: center;
+			}
+			.sonUl{
+				display: none;
+			}
+		</style>
+		<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+/jquery-1.4.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var fatherUl = $(".fatherUl");
+				var liArr = fatherUl.children("li");
+				
+				liArr.mouseover(function(){
+					$(this).children().show();
+				})
+				liArr.mouseout(function(){
+					$(this).children().hide();
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<ul class="fatherUl">
+			<li>
+				一级菜单
+				<ul class="sonUl">
+					<li>二级菜单1</li>
+					<li>二级菜单2</li>
+					<li>二级菜单3</li>
+				</ul>
+			
+			</li>
+			<li>
+				二级菜单
+				<ul class="sonUl">
+					<li>二级菜单1</li>
+					<li>二级菜单2</li>
+					<li>二级菜单3</li>
+				</ul>
+			</li>
+			<li>
+				三级菜单
+				<ul class="sonUl">
+					<li>二级菜单1</li>
+					<li>二级菜单2</li>
+					<li>二级菜单3</li>
+				</ul>
+			</li>
+		</ul>
+	</body>
+</html>
